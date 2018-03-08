@@ -2,7 +2,7 @@
 """
 Snippet template tags
 """
-from django.conf import settings
+from django_feedparser import settings
 from django import template
 from django.utils.safestring import mark_safe
 

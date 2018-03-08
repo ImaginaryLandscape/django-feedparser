@@ -3,7 +3,7 @@
 App views
 """
 #from django.db import models
-from django.conf import settings
+from . import settings
 from django.views import generic
 
 from .utils import FeedparserError, get_feed_renderer

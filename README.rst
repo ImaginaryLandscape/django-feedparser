@@ -20,6 +20,13 @@ It is not a Feed agregator since it manage feeds one by one.
 * Once the feed has been fetched, it can be displayed through a template. Default template is really basic and you should eventually override it or create another one to fit to your feed structure/format;
 * A `DjangoCMS`_ plugin is available on `cmsplugin_feedparser`_;
 
+Imagescape Fork
+*****
+This fork has been modified to:
+* Pass the request context into the inclusion tag
+* Allow for normal app settings behavior
+* Add a template filter, feed_date, for converting dates into datetime objects
+
 Links
 *****
 

@@ -41,7 +41,7 @@ class FeedBasicRenderer(object):
         Get the feed content using 'requests'
         """
         try:
-            r = requests.get(url, timeout=self.timeout)
+            r = requests.get(url, verify=False, timeout=self.timeout)
         except requests.exceptions.Timeout:
             if not self.safe:
                 raise
@@ -140,13 +140,12 @@ class FeedBasicRenderer(object):
             self.feed_context_name: self.format_feed_content(self._feed),
         }
     
-    def render(self, url, template=None, expiration=0):
+    def render(self, context, url, template=None, expiration=0):
         """
         Render feed template
         """
         template = template or self.default_template
-        
-        return render_to_string(template, self.get_context(url, expiration))
+        return render_to_string(template, self.get_context(url, expiration), context)
 
 
 class FeedJsonRenderer(FeedBasicRenderer):

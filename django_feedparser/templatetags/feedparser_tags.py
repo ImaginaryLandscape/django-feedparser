@@ -32,4 +32,7 @@ def feedparser_render(context, url, *args, **kwargs):
 
 @register.filter
 def feed_date(value):
-    return datetime.datetime(*value[:6])
+    try:
+        return datetime.datetime(*value[:6])
+    except:
+        pass

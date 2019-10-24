@@ -145,7 +145,18 @@ class FeedBasicRenderer(object):
         Render feed template
         """
         template = template or self.default_template
-        return render_to_string(template, self.get_context(url, expiration), context)
+        # Note that the incoming "context" variable is an instance of Django's
+        # "RequestContext" class, while "get_context()" (defined above) returns
+        # a dictionary. Clear, right? Anyway under Dj.<=1.8, both got sent to
+        # "render_to_string()" like so:
+        #
+        #     return render_to_string(template, self.get_context(url, expiration), context)
+        #
+        # The signature of this function changed in Dj. 1.10. Now instead of a
+        # "RequestContext" object, the Request object may be sent as the third
+        # parameter, but it's optional. OSF seems to need it though, as leaving
+        # it off breaks the "news-media" page and who knows maybe others - NTT
+        return render_to_string(template, self.get_context(url, expiration), context.request)
 
 
 class FeedJsonRenderer(FeedBasicRenderer):

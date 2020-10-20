@@ -32,7 +32,7 @@ setup(
     install_requires=[
         'six',
         'requests>=2.7.0',
-        'feedparser>=5.1.3',
+        'feedparser>=5.1.3,<6.0.0',
     ],
     include_package_data=True,
     zip_safe=False
